@@ -1,0 +1,14 @@
+@(users: List[models.User])
+@import helper._
+
+@main("Users List"){
+<h1>@users.size() User(s) </h1>
+<ul id="list">
+	@for(user <- users){
+	<li>
+	@user.getFullName() @user.getCompany() @user.getEmail() @form(routes.User.delete(user.getId())){<input type="submit" value="Delete">}
+	@form(routes.User.read(user.getId())){<input type="submit" value="Edit">}
+	</li>
+	}
+</ul>
+}
